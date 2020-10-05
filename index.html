@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .predio{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            align-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .andar{
+            border: 2px solid black;
+            height: 130px;
+            width: 34%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        #elevador {
+            height: 133px;
+            width: 30.3%;
+            position: absolute;
+            bottom: 0;
+            left: 34.82%;
+            right: 34.82%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 5s;            
+            overflow: hidden;           
+        }
+        /* FUNCIONAMENTO PORTAS */
+        .porta-esquerda, .porta-direita {
+            border: 1px solid black;
+            width: 50%;
+            height: 98.8%;
+            margin: 0 auto;
+            background-color: grey;
+            position: relative;
+            transition: 5s;
+            z-index: 2
+        }
+        .porta-esquerda {
+            justify-content: flex-start;
+            left: 0;
+        }
+        .porta-direita {
+            justify-content: flex-end;
+            right: 0;
+        }
+        #elevador.abrir .porta-esquerda {
+            left: -35%;
+        }
+        #elevador.abrir .porta-direita {
+            right: -35%;
+         }
+        .painel-esquerda {
+            width: 50px;
+            height: 70px;
+            background-color: grey;
+            margin-right: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .painel-elevador{
+            z-index: 1;
+            width: 47%;
+            height: 80%;
+            background-color: lightgrey;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+            position: absolute;
+        }
+                 p.titulo {
+                    margin: 10px 0 2px 10px;
+                    width: 100%;
+        }
+        #andar-um, #andar-dois, #andar-tres, #andar-quatro, #andar-cinco {
+            padding: 0 6px;
+            margin-left: 15px;
+            margin-bottom: 5px;
+            background-color: aliceblue;
+        }
+        #andar-um p, #andar-dois p, #andar-tres p, #andar-quatro p, #andar-cinco p {
+            margin: 0 auto;
+        }
+        /**
+*** Seta para CIMA
+**/
+.seta-cima:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+  width: 0; 
+  height: 0; 
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 13px solid black;
+}
+
+/**
+*** Seta para BAIXO
+**/
+.seta-baixo:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+/*  margin-right: 10px;*/
+  width: 0; 
+  height: 0; 
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 13px solid #f00;
+}
+    </style>
+</head>
+<body>
+   <div class="container">
+     <div class="predio">
+         <div class="andar">
+             <div class="painel-esquerda"> 
+             <div class="seta-cima" onclick="chamarElevador(80,5)"></div>
+             <div class="seta-baixo" onclick="chamarElevador(80,5)"></div>
+            </div>
+        </div>
+         <div class="andar"></div>
+         <div id="elevador" class="abrir">
+            <div class="painel-elevador">
+                <p class="titulo">Andar:</p>
+                <div id="andar-cinco" onclick="moverElevador(80,5)">
+                     <p>4</p> 
+                </div>
+                <div id="andar-quatro" onclick="moverElevador(60,4)">
+                     <p>3</p> 
+                </div>
+                <div id="andar-tres" onclick="moverElevador(40,3)">
+                     <p>2</p> 
+                </div>
+                <div id="andar-dois" onclick="moverElevador(20,2)">
+                     <p>1</p> 
+                </div>
+                <div id="andar-um" onclick="moverElevador(0,1)">
+                     <p>T</p> 
+                </div>
+            </div>
+             <div class="porta-esquerda"></div>
+             <div class="porta-direita"></div>
+         </div>
+         <div class="andar"><div class="painel-esquerda">
+             <div class="seta-cima" onclick="chamarElevador(60,4)"></div>
+             <div class="seta-baixo" onclick="chamarElevador(60,4)"></div>
+            </div></div>
+         <div class="andar"></div>
+         <div class="andar"><div class="painel-esquerda">
+             <div class="seta-cima" onclick="chamarElevador(40,3)"></div>
+             <div class="seta-baixo" onclick="chamarElevador(40,3)"></div>
+            </div></div>
+         <div class="andar"></div>
+         <div class="andar"><div class="painel-esquerda">
+             <div class="seta-cima" onclick="chamarElevador(20,2)"></div>
+             <div class="seta-baixo" onclick="chamarElevador(20,2)"></div>
+            </div></div>
+         <div class="andar"></div>
+         <div class="andar"><div class="painel-esquerda">
+             <div class="seta-cima" onclick="chamarElevador(0,1)"></div>
+             <div class="seta-baixo" onclick="chamarElevador(0,1)"></div>
+            </div></div>
+         <div class="andar"></div>
+     </div>
+      
+       
+   </div>    
+</body>
+<script type="text/javascript">
+    var elevador =  document.getElementById('elevador');
+    function abrirPortas(){
+        elevador.classList = "abrir";
+    }
+    function fecharPortas(){
+        elevador.classList = "";
+    }
+    //a função fica fora para não ficar duplicado evento no console:      
+    elevador.addEventListener('transitionend', function(evento)  {// a função só executa quando o 'transitionend' evento finalizar
+        if ( evento.propertyName == "bottom" ){//só executa quando parar a transição de bottom, a classe abrir será executada
+            abrirPortas();
+        }
+    });
+    let andarAtual = 1;
+    function chamarElevador(altAndar, numAndar){
+       //anula essa linha porque já foi definida na var elevador no ínicio do script var elevador = document.getElementById("elevador");
+//       elevador.classList = "abrir";
+//       andarAtual = numAndar;
+        moverElevador(altAndar, numAndar);
+    }
+    function moverElevador(andar, irParaAndar){
+        //anula essa linha porque já foi definida na var elevador no ínicio do script var elevador = document.getElementById("elevador");
+        fecharPortas();     
+            var resultado = irParaAndar-andarAtual;
+            if (resultado < 0) {
+                resultado = resultado * -1;
+            }
+            var transicao = 2; // transicao de um andar pra outro
+            var valorTransicao = resultado * transicao;
+            if (valorTransicao === 0){
+                valorTransicao = 2;
+            }
+            elevador.style.transition = valorTransicao+"s"; // transicao do andar de cima para baixo dependendo de onde se encontra
+        setTimeout(function(){
+            andarAtual = irParaAndar;
+            elevador.style.bottom = andar+"%";
+        }, 3000); // depois de 3s ele executa o que tem dentro da funcao
+    }
+</script>
+</html>
